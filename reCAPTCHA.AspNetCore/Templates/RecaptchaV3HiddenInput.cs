@@ -112,28 +112,28 @@ namespace reCAPTCHA.AspNetCore.Templates
             
             #line default
             #line hidden
-            this.Write(" ></script>\r\n<script>\r\n\tfunction getReCaptcha() {\r\n\t\tsetInterval(function(){\r\n\t\t\tgrecaptcha.execute('");
+            this.Write(" ></script>\r\n<script>\r\n\tfunction getReCaptcha() {\r\n\t\tgrecaptcha.execute('");
             
-            #line 12 "C:\Source\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+            #line 11 "C:\Source\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Settings.SiteKey));
             
             #line default
             #line hidden
             this.Write("', { 'action': '");
             
-            #line 12 "C:\Source\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+            #line 11 "C:\Source\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Action));
             
             #line default
             #line hidden
-            this.Write("' }).then(function (token) {\r\n\t\t\t\tdocument.getElementById('");
+            this.Write("' }).then(function (token) {\r\n\t\t\tdocument.getElementById('");
             
-            #line 13 "C:\Source\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
+            #line 12 "C:\Source\reCAPTCHA.AspNetCore\reCAPTCHA.AspNetCore\Templates\RecaptchaV3HiddenInput.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Id));
             
             #line default
             #line hidden
-            this.Write("').value = token;\r\n\t\t\t});\r\n\t\t}, 100000);\r\n\t}\r\n\r\n\tif (typeof grecaptcha !== 'undefined') {\r\n\t\tgrecaptcha.ready(function () {\r\n\t\t\tgetReCaptcha();\r\n\t\t});\r\n\t}\r\n</script>");
+            this.Write("').value = token;\r\n\t\t});\r\n\t}\r\n\r\n\tif (typeof grecaptcha !== 'undefined') {\r\n\t\tgrecaptcha.ready(function () {\r\n\t\t\tgetReCaptcha();\r\n\t\t\tsetInterval(function(){getReCaptcha();}, 100000);\r\n\t\t});\r\n\t}\r\n</script>");
             return this.GenerationEnvironment.ToString();
         }
     }
