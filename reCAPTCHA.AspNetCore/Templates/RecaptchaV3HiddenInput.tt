@@ -8,10 +8,11 @@
 <script <# if (!string.IsNullOrEmpty(Model.Settings.ContentSecurityPolicy)) {#>script-src="<#= Model.Settings.ContentSecurityPolicy #>"<#}#> <# if (!string.IsNullOrEmpty(Model.Settings.ContentSecurityPolicy)) {#>frame-src="<#= Model.Settings.ContentSecurityPolicy #>"<#}#> src="https://<#= Model.Settings.Site #>/recaptcha/api.js?render=<#= Model.Settings.SiteKey #>&hl=<#= Model.Language #>" <# if (Model.IsAsync) {#>async defer<#}#> ></script>
 <script>
 	function getReCaptcha() {
-		grecaptcha.execute('<#= Model.Settings.SiteKey #>', { 'action': '<#= Model.Action #>' }).then(function (token) {
-			document.getElementById('<#= Model.Id #>').value = token;
-			setInterval(function(){getReCaptcha();}, 100000);
-		});
+		setInterval(function(){
+			grecaptcha.execute('<#= Model.Settings.SiteKey #>', { 'action': '<#= Model.Action #>' }).then(function (token) {
+				document.getElementById('<#= Model.Id #>').value = token;
+			});
+		}, 100000);
 	}
 
 	if (typeof grecaptcha !== 'undefined') {
